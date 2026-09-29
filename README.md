@@ -28,3 +28,11 @@ library components intended to be composed by an embedding application.
 ## Main packages
 
 `marine`, `cranes`, `yard`, `gate`, `customs`, `reefer`, `hazmat`, `equipment`, `rail`, `billing`, `transshipment`, `planning`, `persistence`, `reporting`, and `api`.
+
+The `reefer` package also provides `incidents.ReeferIncidentFlow`, which chains
+temperature alarms, defrost classification, sensor-blackout detection,
+power-headroom scheduling and repair work orders into one continuous handling
+flow: it first distinguishes normal defrost cycles and telemetry blackouts from
+real thermal risk, then arranges power by circuit margin (hold, connect,
+relocate, surge-feasible repack, or queue). Each `(container, anomaly kind)` has
+at most one active case, and recovered cases retain their complete timeline.
